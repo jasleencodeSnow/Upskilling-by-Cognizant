@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Bootstrap Page</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+  <h1 class="text-primary">Hello Bootstrap!</h1>
+
+  <!-- Bootstrap JS Bundle (includes Popper.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<div class="container">
+  <div class="row">
+    <!-- col-12 = full width on mobile (stacks)
+         col-md-6 = 2 per row on tablet (768px+)
+         col-lg-4 = 3 per row on desktop (992px+) -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="p-3 bg-primary text-white">Column 1</div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="p-3 bg-success text-white">Column 2</div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="p-3 bg-warning">Column 3</div>
+    </div>
+  </div>
+</div>
+<!-- excecise 4.1 -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"><!-- Sidebar (25% width on md+) --></div>
+    <div class="col-md-9"><!-- Main content (75% width on md+) --></div>
+  </div>
+</div>
+<!-- 4.2 -->
+ <div class="container">
+  <div class="row">
+    <div class="col-md-3"><!-- Sidebar (25% width on md+) --></div>
+    <div class="col-md-9"><!-- Main content (75% width on md+) --></div>
+  </div>
+</div>
+<!-- 5 -->
+<!-- Horizontally centered -->
+<div class="row justify-content-center">
+  <div class="col-auto">I am centered!</div>
+</div>
+
+<!-- Both centered (needs height on row) -->
+<div class="row justify-content-center align-items-center" style="height: 200px;">
+  <div class="col-auto">Perfect center</div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 order-md-2">I'm first in HTML, second on desktop</div>
+  <div class="col-md-4 order-md-1">I'm second in HTML, first on desktop</div>
+  <div class="col-md-4 order-md-3">I stay third everywhere</div>
+</div>
+
+<!-- 6 -->
+
+<nav class="d-flex flex-column flex-md-row justify-content-between align-items-center bg-dark p-3">
+  <div class="text-white fw-bold">Logo</div>
+  <div class="d-flex flex-column flex-md-row gap-2">
+    <a href="#" class="text-white">Home</a>
+    <a href="#" class="text-white">About</a>
+  </div>
+</nav>
+
+<div class="card p-3">
+  <div class="d-flex justify-content-between align-items-center">
+    <h6 class="mb-0">Product Name</h6>
+    <span class="badge bg-success">In Stock</span>
+  </div>
+</div>
+
+<!-- 7 -->
+
+<p class="text-uppercase">becomes ALL CAPS</p>
+<p class="text-lowercase">BECOMES all lowercase</p>
+<p class="text-capitalize">every first letter is Capitalized</p>
+<p class="text-center">centered text</p>
+<p class="text-end">right-aligned text</p>
+
+<!-- 8 -->
+ <div class="form-floating mb-3">
+  <input type="email" class="form-control" id="email" placeholder="x"/>
+  <label for="email">Email address</label>
+</div>
+
+<!-- 9 -->
+ <!-- Solid buttons -->
+<button class="btn btn-primary">Primary</button>
+<button class="btn btn-success">Success</button>
+<button class="btn btn-danger">Danger</button>
+<button class="btn btn-warning">Warning</button>
+<button class="btn btn-info">Info</button>
+<button class="btn btn-secondary">Secondary</button>
+<button class="btn btn-dark">Dark</button>
+<button class="btn btn-light">Light</button>
+
+<!-- Outline buttons (hollow with colored border) -->
+<button class="btn btn-outline-primary">Outline Primary</button>
+
+<!-- Sizes -->
+<button class="btn btn-primary btn-lg">Large</button>
+<button class="btn btn-primary btn-sm">Small</button>
+
+<!-- Full width -->
+<div class="d-grid">
+  <button class="btn btn-primary">Full Width</button>
+</div>
+
+
+
+<!-- Button group -->
+<div class="btn-group">
+  <button class="btn btn-primary">Left</button>
+  <button class="btn btn-primary">Middle</button>
+  <button class="btn btn-primary">Right</button>
+</div>
+
+<!-- Checkbox toggle -->
+<div class="btn-group">
+  <input type="checkbox" class="btn-check" id="opt1" autocomplete="off"/>
+  <label class="btn btn-outline-primary" for="opt1">Option A</label>
+  
+  <input type="checkbox" class="btn-check" id="opt2" autocomplete="off"/>
+  <label class="btn btn-outline-primary" for="opt2">Option B</label>
+</div>
+
+<!-- 10 -->
+ <!-- navbar-expand-lg = collapses on screens below 992px -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <!-- Brand/Logo -->
+    <a class="navbar-brand" href="#">MyApp</a>
+    
+    <!-- Hamburger button (shows only on mobile) -->
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#myNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <!-- Collapsible section -->
+    <div class="collapse navbar-collapse" id="myNav">
+      <!-- Links go here -->
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+      </ul>
+      <!-- Search form -->
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search"/>
+        <button class="btn btn-outline-light">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<!-- Tab buttons -->
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab1">Tab 1</button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab2">Tab 2</button>
+  </li>
+</ul>
+
+<!-- Tab content -->
+<div class="tab-content mt-3">
+  <div class="tab-pane fade show active" id="tab1">Content for Tab 1</div>
+  <div class="tab-pane fade" id="tab2">Content for Tab 2</div>
+</div>
+
+<!-- 11 -->
+
+<div class="card" style="width: 18rem;">
+  <img src="photo.jpg" class="card-img-top" alt="Profile photo"/>
+  <div class="card-body">
+    <h5 class="card-title">Arjun Mehta</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Developer</h6>
+    <p class="card-text">Full stack developer from Mumbai.</p>
+    <a href="#" class="btn btn-primary">View Profile</a>
+  </div>
+</div>
+
+
+<!-- 12 -->
+ <div class="m-3">   16px margin on all sides  </div>
+<div class="mt-4">  24px margin on top only   </div>
+<div class="px-5">  48px padding left + right </div>
+<div class="py-2">  8px padding top + bottom  </div>
+<div class="mb-0">  0px margin bottom         </div>
+<div class="mx-auto"> auto left+right margin (centers block elements) </div>
+
+<!-- 13 -->
+ <div class="bg-primary text-white">Primary (blue)</div>
+<div class="bg-success text-white">Success (green)</div>
+<div class="bg-danger text-white">Danger (red)</div>
+<div class="bg-warning text-dark">Warning (yellow)</div>
+<div class="bg-info text-dark">Info (teal)</div>
+<div class="bg-secondary text-white">Secondary (gray)</div>
+<div class="bg-dark text-white">Dark</div>
+<div class="bg-light text-dark">Light</div>
+
+<div class="bg-dark bg-gradient text-white p-4">
+  Dark with gradient overlay
+</div>
+<!-- 14 -->
+ <!-- Hidden everywhere -->
+<div class="d-none">You'll never see this</div>
+
+<!-- Visible only on mobile (hidden from md+) -->
+<div class="d-block d-md-none">Mobile only</div>
+
+<!-- Visible only on tablet and above (hidden on mobile) -->
+<div class="d-none d-md-block">Tablet+ only</div>
+
+<!-- Visible only on desktop as a flex container -->
+<div class="d-none d-lg-flex">Desktop flex layout</div>
+ <!-- 15 -->
+  <div class="border">All sides, default gray</div>
+<div class="border border-primary">Blue border</div>
+<div class="border border-3">Thick border</div>
+<div class="border-top border-danger">Only top, red</div>
+<!-- 16-->
+ <footer class="position-fixed bottom-0 w-100 bg-dark text-white py-3 text-center">
+  Fixed Footer — stays at bottom when scrolling
+</footer>
+<!-- 17-->
+ <i class="bi bi-house-fill"></i>      <!-- Home icon -->
+<i class="bi bi-search"></i>          <!-- Search icon -->
+<i class="bi bi-trash-fill"></i>      <!-- Delete icon -->
+<i class="bi bi-github fs-4"></i>     <!-- GitHub icon, larger size -->
+<!-- 18-->
+ <!-- Trigger button -->
+<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+  Open Modal
+</button>
+
+<!-- The Modal (place anywhere in body, outside other elements) -->
+<div class="modal fade" id="myModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal Title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Your modal content goes here.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="accordion" id="myAccordion">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#panel1">
+        Question 1
+      </button>
+    </h2>
+    <div id="panel1" class="accordion-collapse collapse show" data-bs-parent="#myAccordion">
+      <div class="accordion-body">Answer 1</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#panel2">
+        Question 2
+      </button>
+    </h2>
+    <div id="panel2" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
+      <div class="accordion-body">Answer 2</div>
+    </div>
+  </div>
+</div>
+ <!-- 19 -->
+</body>
+</html>

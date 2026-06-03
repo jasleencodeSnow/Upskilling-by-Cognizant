@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Community Event Portal — CSS3</title>
+
+  <!-- Exercise 1: Google Font via link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Exercise 1: External stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Exercise 1: Embedded <style> tag -->
+  <style>
+    /* Exercise 1: Embedded — body background */
+    body {
+      background-color: #f0f4f8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Exercise 1: Inline style on heading -->
+  <h1 style="color: red;">Local Community Event Portal</h1>
+
+  <!-- Navigation -->
+  <nav id="mainNav">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#bulletin">Bulletin</a></li>
+      <li><a href="#admin">Admin</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Exercise 3: mainHeader ID -->
+  <header id="mainHeader">
+    <h2>Welcome to Our Community</h2>
+    <p class="lead">Connecting residents with local events since 2020.</p>
+  </header>
+
+  <!-- Exercise 4 & 5: Events Section -->
+  <section id="events">
+    <h2>Upcoming Events</h2>
+
+    <div class="eventCard">
+      <h3>Tech Meetup</h3>
+      <p>Join us for an exciting evening of tech talks and networking.</p>
+      <a href="#" class="cta-button">Register Now</a>
+    </div>
+
+    <div class="eventCard">
+      <h3>Baking Workshop</h3>
+      <p>Learn to bake artisan bread with local chefs.</p>
+      <a href="#" class="cta-button">Register Now</a>
+    </div>
+
+    <div class="eventCard">
+      <h3>Music Night</h3>
+      <p>An evening of live music performances by local artists.</p>
+      <a href="#" class="cta-button">Register Now</a>
+    </div>
+  </section>
+
+  <!-- Exercise 9: Multi-column bulletin -->
+  <section id="bulletin">
+    <h2>Community Bulletin</h2>
+    <article class="bulletin-text">
+      The annual city marathon is scheduled for next month. All residents are encouraged
+      to participate. Registration is open at City Hall. The route will pass through
+      the main park and down the riverside. Refreshments will be provided at every 5km mark.
+      Volunteers are needed to help with crowd management. Contact us for more details
+      on how to get involved. The event promises to be bigger and better than ever this year.
+      Local businesses have come forward to sponsor hydration stations along the route.
+      We thank everyone for their continued community spirit and participation.
+    </article>
+  </section>
+
+  <!-- Exercise 7: Admin Table -->
+  <section id="admin">
+    <h2>Events Admin Table</h2>
+    <table id="adminTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Event Name</th>
+          <th>Date</th>
+          <th>City</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Tech Meetup</td>
+          <td>2025-06-10</td>
+          <td>New York</td>
+          <td>Upcoming</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>AI Conference</td>
+          <td>2025-05-15</td>
+          <td>Chicago</td>
+          <td>Completed</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Frontend Bootcamp</td>
+          <td>2025-07-01</td>
+          <td>Los Angeles</td>
+          <td>Upcoming</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Baking Workshop</td>
+          <td>2025-07-05</td>
+          <td>New York</td>
+          <td>Upcoming</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Exercise 8: Box Model form fields -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" id="contactName" placeholder="Your name" />
+      <input type="email" id="contactEmail" placeholder="Your email" />
+      <textarea placeholder="Your message" rows="4"></textarea>
+      <button type="submit" class="cta-button">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Exercise 11: Dev Tools note -->
+  <!-- Open Chrome DevTools > Network tab to verify styles.css loads correctly -->
+  <!-- Use Device Toolbar (Ctrl+Shift+M) to test responsive breakpoints -->
+
+</body>
+</html>

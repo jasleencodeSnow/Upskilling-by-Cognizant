@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Community Event Portal</title>
+
+  <!-- Exercise 1: Internal style -->
+  <style>
+    /* Exercise 3: Welcome Banner */
+    #welcomeBanner {
+      background-color: blue;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .highlight { background-color: yellow; color: black; }
+
+    /* Exercise 4: Image Gallery */
+    .gallery-img {
+      border: 3px solid #333;
+      width: 150px;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    /* Exercise 5: Form */
+    form { max-width: 500px; margin: 20px auto; }
+    form input, form select, form textarea {
+      display: block; width: 100%; margin-bottom: 10px;
+      padding: 8px; border: 1px solid #ccc; border-radius: 4px;
+    }
+    form button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; border-radius: 4px; }
+
+    /* General */
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    nav { background: #333; padding: 10px; }
+    nav a { color: white; margin: 0 10px; text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    section { padding: 30px; border-bottom: 1px solid #eee; }
+    h2 { color: #333; }
+    #charCount { color: #666; font-size: 0.9em; }
+    #videoMsg { color: green; font-weight: bold; }
+    .enlarged { width: 300px !important; height: 200px !important; transition: all 0.3s; }
+  </style>
+</head>
+<body onbeforeunload="return warnLeave()">
+
+<!-- Exercise 1: HTML5 Base Template with comments -->
+
+<!-- Navigation -->
+<nav>
+  <a href="#home">Home</a>
+  <a href="#events">Events</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#register">Register</a>
+  <a href="#feedback">Feedback</a>
+  <a href="#media">Media</a>
+  <a href="#prefs">Preferences</a>
+  <a href="#location">Location</a>
+  <a href="help.html" target="_blank">Help</a>
+</nav>
+
+<!-- Main -->
+<main>
+
+  <!-- Exercise 3: Welcome Banner with id/class -->
+  <div id="welcomeBanner">
+    <h1>Welcome to the Community Event Portal</h1>
+    <!-- Inline style on span -->
+    <span style="color: red; font-weight: bold;">🎉 Special Offer: Free Registration this week!</span>
+    <p class="highlight">Highlighted: Check out our upcoming events!</p>
+  </div>
+
+  <!-- Home Section -->
+  <section id="home">
+    <h2>Home</h2>
+    <p>Your one-stop portal for all local community events.</p>
+  </section>
+
+  <!-- Events Section -->
+  <section id="events">
+    <h2>Upcoming Events</h2>
+    <ul id="eventList">
+      <li>Tech Meetup — June 10, 2025</li>
+      <li>Baking Workshop — July 5, 2025</li>
+      <li>Music Night — July 20, 2025</li>
+    </ul>
+  </section>
+
+  <!-- Exercise 4: Image Gallery -->
+  <section id="gallery">
+    <h2>Event Gallery</h2>
+    <table>
+      <tr>
+        <td>
+          <!-- ondblclick to enlarge (Exercise 6) -->
+          <img src="images/event1.jpg" alt="Tech Meetup" title="Tech Meetup 2024"
+               class="gallery-img" ondblclick="enlargeImg(this)" />
+          <p>Tech Meetup</p>
+        </td>
+        <td>
+          <img src="images/event2.jpg" alt="Baking Workshop" title="Baking Workshop 2024"
+               class="gallery-img" ondblclick="enlargeImg(this)" />
+          <p>Baking Workshop</p>
+        </td>
+        <td>
+          <img src="images/event3.jpg" alt="Music Night" title="Music Night 2024"
+               class="gallery-img" ondblclick="enlargeImg(this)" />
+          <p>Music Night</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <img src="images/event4.jpg" alt="Art Fair" title="Art Fair 2024"
+               class="gallery-img" ondblclick="enlargeImg(this)" />
+          <p>Art Fair</p>
+        </td>
+        <td>
+          <img src="images/event5.jpg" alt="Food Festival" title="Food Festival 2024"
+               class="gallery-img" ondblclick="enlargeImg(this)" />
+          <p>Food Festival</p>
+        </td>
+        <td>
+          <img src="images/event6.jpg" alt="Sports Day" title="Sports Day 2024"
+               class="gallery-img" ondblclick="enlargeImg(this)" />
+          <p>Sports Day</p>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- Exercise 5 & 6: Event Registration Form -->
+  <section id="register">
+    <h2>Event Registration</h2>
+    <form id="regForm" onsubmit="submitForm(event)">
+      <!-- autofocus on first field -->
+      <label>Name:</label>
+      <input type="text" id="regName" name="name" placeholder="Enter your full name" required autofocus />
+
+      <label>Email:</label>
+      <input type="email" id="regEmail" name="email" placeholder="Enter your email" required />
+
+      <label>Phone:</label>
+      <!-- onblur to validate phone (Exercise 6) -->
+      <input type="tel" id="regPhone" name="phone" placeholder="10-digit phone number"
+             onblur="validatePhone(this)" />
+
+      <label>Date:</label>
+      <input type="date" id="regDate" name="date" required />
+
+      <!-- onchange to show fee (Exercise 6) -->
+      <label>Event Type:</label>
+      <select id="eventType" name="eventType" onchange="showFee(this)" required>
+        <option value="">-- Select Event --</option>
+        <option value="tech" data-fee="500">Tech Meetup (₹500)</option>
+        <option value="baking" data-fee="200">Baking Workshop (₹200)</option>
+        <option value="music" data-fee="300">Music Night (₹300)</option>
+        <option value="art" data-fee="150">Art Fair (₹150)</option>
+      </select>
+      <p id="feeDisplay" style="color:green; font-weight:bold;"></p>
+
+      <label>Message:</label>
+      <textarea id="regMsg" name="message" rows="4" placeholder="Any special requirements?"></textarea>
+
+      <!-- onclick to show confirmation (Exercise 6) -->
+      <button type="submit" onclick="confirmSubmit()">Register</button>
+    </form>
+    <!-- output element for confirmation (Exercise 5) -->
+    <output id="formOutput" style="display:block; margin-top:10px; color:green; font-weight:bold;"></output>
+  </section>
+
+  <!-- Exercise 6: Feedback with event handling -->
+  <section id="feedback">
+    <h2>Event Feedback</h2>
+    <label>Your Feedback:</label>
+    <textarea id="feedbackText" rows="5" cols="40"
+              placeholder="Share your thoughts..."
+              onkeyup="countChars(this)"></textarea>
+    <p id="charCount">Characters: 0</p>
+  </section>
+
+  <!-- Exercise 7: Video Invite with Media Events -->
+  <section id="media">
+    <h2>Event Promo Video</h2>
+    <video id="promoVideo" width="480" controls
+           oncanplay="videoReady()"
+           src="videos/promo.mp4">
+      <source src="videos/promo.mp4" type="video/mp4" />
+      <source src="videos/promo.webm" type="video/webm" />
+      Your browser does not support the video tag.
+    </video>
+    <p id="videoMsg"></p>
+  </section>
+
+  <!-- Exercise 8: Saving User Preferences with localStorage -->
+  <section id="prefs">
+    <h2>Preferences</h2>
+    <label>Preferred Event Type:</label>
+    <select id="prefEventType" onchange="savePref(this)">
+      <option value="">-- Select --</option>
+      <option value="tech">Tech</option>
+      <option value="baking">Baking</option>
+      <option value="music">Music</option>
+      <option value="art">Art</option>
+    </select>
+    <p id="prefMsg" style="color:green;"></p>
+    <button onclick="clearPrefs()">Clear Preferences</button>
+  </section>
+
+  <!-- Exercise 9: Geolocation -->
+  <section id="location">
+    <h2>Find Nearby Events</h2>
+    <button onclick="findNearby()">📍 Find Nearby Events</button>
+    <p id="geoResult"></p>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer style="background:#333; color:white; text-align:center; padding:20px;">
+  <p>&copy; 2025 Community Event Portal</p>
+</footer>
+
+<!-- Exercise 1: External JS -->
+<script src="main.js"></script>
+
+<script>
+  /* ---- Exercise 6: Event Handlers ---- */
+
+  // ondblclick: enlarge image
+  function enlargeImg(img) {
+    img.classList.toggle('enlarged');
+  }
+
+  // onblur: validate phone
+  function validatePhone(input) {
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(input.value)) {
+      input.style.border = '2px solid red';
+      alert('Please enter a valid 10-digit phone number.');
+    } else {
+      input.style.border = '2px solid green';
+    }
+  }
+
+  // onchange: show event fee
+  function showFee(select) {
+    const selected = select.options[select.selectedIndex];
+    const fee = selected.getAttribute('data-fee');
+    document.getElementById('feeDisplay').textContent =
+      fee ? `Registration Fee: ₹${fee}` : '';
+    // Exercise 8: save preference
+    if (select.value) {
+      localStorage.setItem('preferredEvent', select.value);
+    }
+  }
+
+  // onclick: confirm submit
+  function confirmSubmit() {
+    // handled in submitForm
+  }
+
+  // onsubmit: form submission with output element
+  function submitForm(e) {
+    e.preventDefault();
+    const name = document.getElementById('regName').value;
+    const event = document.getElementById('eventType').value;
+    if (name && event) {
+      document.getElementById('formOutput').textContent =
+        `✅ Thank you, ${name}! You are registered for ${event}.`;
+    }
+  }
+
+  // keyup: count characters in feedback
+  function countChars(textarea) {
+    document.getElementById('charCount').textContent =
+      `Characters: ${textarea.value.length}`;
+  }
+
+  /* ---- Exercise 7: Media Events ---- */
+  function videoReady() {
+    document.getElementById('videoMsg').textContent = '✅ Video ready to play!';
+  }
+
+  /* ---- Exercise 7: onbeforeunload ---- */
+  function warnLeave() {
+    return 'You have unsaved form data. Are you sure you want to leave?';
+  }
+
+  /* ---- Exercise 8: localStorage ---- */
+  function savePref(select) {
+    localStorage.setItem('preferredEvent', select.value);
+    sessionStorage.setItem('sessionPref', select.value);
+    document.getElementById('prefMsg').textContent =
+      `Preference saved: ${select.value}`;
+  }
+
+  function clearPrefs() {
+    localStorage.clear();
+    sessionStorage.clear();
+    document.getElementById('prefMsg').textContent = 'Preferences cleared!';
+    document.getElementById('prefEventType').value = '';
+  }
+
+  // On load: restore saved preference
+  window.addEventListener('load', function () {
+    const saved = localStorage.getItem('preferredEvent');
+    if (saved) {
+      const sel = document.getElementById('prefEventType');
+      sel.value = saved;
+      document.getElementById('prefMsg').textContent =
+        `Loaded saved preference: ${saved}`;
+    }
+    // Also restore event type in form
+    const regType = document.getElementById('eventType');
+    if (saved && regType) regType.value = saved;
+  });
+
+  /* ---- Exercise 9: Geolocation ---- */
+  function findNearby() {
+    const result = document.getElementById('geoResult');
+    if (!navigator.geolocation) {
+      result.textContent = '❌ Geolocation is not supported by your browser.';
+      return;
+    }
+    result.textContent = 'Locating...';
+    navigator.geolocation.getCurrentPosition(
+      function (pos) {
+        result.textContent =
+          `📍 Your Location — Latitude: ${pos.coords.latitude.toFixed(4)}, ` +
+          `Longitude: ${pos.coords.longitude.toFixed(4)}. ` +
+          `Searching nearby events...`;
+      },
+      function (err) {
+        switch (err.code) {
+          case err.PERMISSION_DENIED:
+            result.textContent = '❌ Location permission denied.';
+            break;
+          case err.POSITION_UNAVAILABLE:
+            result.textContent = '❌ Location information unavailable.';
+            break;
+          case err.TIMEOUT:
+            result.textContent = '❌ Location request timed out.';
+            break;
+          default:
+            result.textContent = '❌ An unknown error occurred.';
+        }
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0
+      }
+    );
+  }
+</script>
+
+</body>
+</html>

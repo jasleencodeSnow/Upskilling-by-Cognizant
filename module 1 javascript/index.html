@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Event Portal — JavaScript</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f6f9; }
+    header { background: #1a1a2e; color: white; padding: 20px 30px; }
+    nav { background: #16213e; display: flex; gap: 10px; padding: 10px 30px; flex-wrap: wrap; }
+    nav button { background: #007BFF; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+    nav button:hover { background: #0056b3; }
+    main { padding: 20px 30px; }
+    section { background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    h2 { color: #1a1a2e; border-bottom: 2px solid #007BFF; padding-bottom: 8px; }
+    .event-card { border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin: 10px 0; display: flex; justify-content: space-between; align-items: center; }
+    .event-card h3 { margin: 0 0 5px 0; }
+    .event-card p { margin: 0; color: #555; font-size: 0.9em; }
+    .btn { padding: 8px 14px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; }
+    .btn-primary   { background: #007BFF; color: white; }
+    .btn-danger    { background: #dc3545; color: white; }
+    .btn-success   { background: #28a745; color: white; }
+    .btn-secondary { background: #6c757d; color: white; }
+    input, select, textarea { padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 100%; margin-bottom: 10px; }
+    #searchInput { width: 300px; margin-bottom: 10px; }
+    #spinner { display: none; text-align: center; font-size: 1.5em; padding: 20px; }
+    .error { color: red; font-size: 0.85em; margin-top: -8px; margin-bottom: 8px; }
+    .tag { display: inline-block; background: #e0ecff; color: #007BFF; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; margin-left: 6px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🏙️ Community Event Portal</h1>
+</header>
+
+<nav>
+  <button onclick="showSection('basics')">1. Basics</button>
+  <button onclick="showSection('data-types')">2. Data Types</button>
+  <button onclick="showSection('conditionals')">3. Conditionals & Loops</button>
+  <button onclick="showSection('functions')">4. Functions</button>
+  <button onclick="showSection('objects')">5. Objects</button>
+  <button onclick="showSection('arrays')">6. Arrays</button>
+  <button onclick="showSection('dom')">7. DOM</button>
+  <button onclick="showSection('events')">8. Events</button>
+  <button onclick="showSection('async')">9. Async</button>
+  <button onclick="showSection('modern')">10. Modern JS</button>
+  <button onclick="showSection('forms')">11. Forms</button>
+  <button onclick="showSection('ajax')">12. AJAX</button>
+  <button onclick="showSection('debug')">13. Debug</button>
+  <button onclick="showSection('jquery')">14. jQuery</button>
+</nav>
+
+<main>
+
+  <!-- Exercise 1 -->
+  <section id="sec-basics">
+    <h2>1. JavaScript Basics & Setup</h2>
+    <p>Open DevTools Console (F12) to see the welcome log.</p>
+    <p><strong>console.log:</strong> "Welcome to the Community Portal" logged on load.</p>
+    <p><strong>alert:</strong> Fires on page load (see main.js).</p>
+  </section>
+
+  <!-- Exercise 2 -->
+  <section id="sec-data-types" style="display:none">
+    <h2>2. Syntax, Data Types & Operators</h2>
+    <div id="dataTypesOutput"></div>
+  </section>
+
+  <!-- Exercise 3 -->
+  <section id="sec-conditionals" style="display:none">
+    <h2>3. Conditionals, Loops & Error Handling</h2>
+    <div id="eventListOutput"></div>
+    <button class="btn btn-primary" onclick="renderEventList()">Show Valid Events</button>
+  </section>
+
+  <!-- Exercise 4 -->
+  <section id="sec-functions" style="display:none">
+    <h2>4. Functions, Closures & Higher-Order Functions</h2>
+    <label>Filter Category:</label>
+    <select id="catFilter">
+      <option value="">All</option>
+      <option value="tech">Tech</option>
+      <option value="music">Music</option>
+      <option value="baking">Baking</option>
+    </select>
+    <div id="funcOutput"></div>
+    <p id="totalReg"></p>
+  </section>
+
+  <!-- Exercise 5 -->
+  <section id="sec-objects" style="display:none">
+    <h2>5. Objects & Prototypes</h2>
+    <button class="btn btn-primary" onclick="demoObjects()">Run Object Demo</button>
+    <pre id="objOutput" style="background:#f4f4f4;padding:15px;border-radius:4px;overflow:auto;"></pre>
+  </section>
+
+  <!-- Exercise 6 -->
+  <section id="sec-arrays" style="display:none">
+    <h2>6. Arrays & Methods</h2>
+    <button class="btn btn-primary" onclick="demoArrays()">Run Array Demo</button>
+    <pre id="arrOutput" style="background:#f4f4f4;padding:15px;border-radius:4px;overflow:auto;"></pre>
+  </section>
+
+  <!-- Exercise 7 -->
+  <section id="sec-dom" style="display:none">
+    <h2>7. DOM Manipulation</h2>
+    <div id="domEventCards"></div>
+    <button class="btn btn-success" onclick="renderDOMEvents()">Render Events</button>
+  </section>
+
+  <!-- Exercise 8 -->
+  <section id="sec-events" style="display:none">
+    <h2>8. Event Handling</h2>
+    <input type="text" id="searchInput" placeholder="Search events by name (keydown)..." />
+    <select id="catSelect" onchange="filterByCategory()">
+      <option value="">All Categories</option>
+      <option value="tech">Tech</option>
+      <option value="music">Music</option>
+      <option value="baking">Baking</option>
+    </select>
+    <div id="eventHandlerOutput"></div>
+  </section>
+
+  <!-- Exercise 9 -->
+  <section id="sec-async" style="display:none">
+    <h2>9. Async JS, Promises, Async/Await</h2>
+    <button class="btn btn-primary" onclick="fetchWithPromise()">Fetch with Promise</button>
+    <button class="btn btn-success" onclick="fetchWithAsync()">Fetch with Async/Await</button>
+    <div id="spinner">⏳ Loading events...</div>
+    <div id="asyncOutput"></div>
+  </section>
+
+  <!-- Exercise 10 -->
+  <section id="sec-modern" style="display:none">
+    <h2>10. Modern JavaScript Features</h2>
+    <button class="btn btn-primary" onclick="demoModernJS()">Run ES6+ Demo</button>
+    <pre id="modernOutput" style="background:#f4f4f4;padding:15px;border-radius:4px;overflow:auto;"></pre>
+  </section>
+
+  <!-- Exercise 11 -->
+  <section id="sec-forms" style="display:none">
+    <h2>11. Working with Forms</h2>
+    <form id="regForm" onsubmit="handleFormSubmit(event)">
+      <label>Name:</label>
+      <input type="text" name="name" id="fname" placeholder="Full Name" />
+      <span id="nameErr" class="error"></span>
+
+      <label>Email:</label>
+      <input type="email" name="email" id="femail" placeholder="Email Address" />
+      <span id="emailErr" class="error"></span>
+
+      <label>Event:</label>
+      <select name="event" id="fevent">
+        <option value="">-- Select --</option>
+        <option value="tech">Tech Meetup</option>
+        <option value="music">Music Night</option>
+        <option value="baking">Baking Workshop</option>
+      </select>
+      <span id="eventErr" class="error"></span>
+
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <div id="formMsg" style="margin-top:10px;font-weight:bold;color:green;"></div>
+  </section>
+
+  <!-- Exercise 12 -->
+  <section id="sec-ajax" style="display:none">
+    <h2>12. AJAX & Fetch API</h2>
+    <button class="btn btn-primary" onclick="postRegistration()">Submit Registration via Fetch</button>
+    <div id="ajaxMsg" style="margin-top:10px;font-weight:bold;"></div>
+  </section>
+
+  <!-- Exercise 13 -->
+  <section id="sec-debug" style="display:none">
+    <h2>13. Debugging & Testing</h2>
+    <p>Open Chrome DevTools (F12) → Console tab to view step-by-step logs.</p>
+    <button class="btn btn-primary" onclick="debugDemo()">Run Debug Demo</button>
+    <pre id="debugOutput" style="background:#f4f4f4;padding:15px;border-radius:4px;overflow:auto;"></pre>
+  </section>
+
+  <!-- Exercise 14 -->
+  <section id="sec-jquery" style="display:none">
+    <h2>14. jQuery & JS Frameworks</h2>
+    <button id="registerBtn" class="btn btn-primary">Register (jQuery click)</button>
+    <div id="jqCard" class="event-card" style="display:none;margin-top:10px;">
+      <div>
+        <h3>Tech Meetup</h3>
+        <p>June 10, 2025 — New York</p>
+      </div>
+    </div>
+    <button class="btn btn-success" onclick="$('#jqCard').fadeIn(500)">Show Card</button>
+    <button class="btn btn-danger" onclick="$('#jqCard').fadeOut(500)">Hide Card</button>
+    <div id="jqMsg" style="margin-top:10px;color:#007BFF;font-weight:bold;"></div>
+    <div style="margin-top:20px;background:#f8f9fa;padding:15px;border-radius:6px;">
+      <strong>React/Vue benefit:</strong>
+      <p>Frameworks like React and Vue provide a component-based architecture, virtual DOM for efficient
+      re-rendering, and a rich ecosystem — making it easier to build and maintain large-scale,
+      interactive UIs compared to raw jQuery.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- jQuery CDN (Exercise 14) -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- Exercise 1: External JS -->
+<script src="main.js"></script>
+</body>
+</html>
